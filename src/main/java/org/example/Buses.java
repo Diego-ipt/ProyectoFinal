@@ -25,4 +25,7 @@ public class Buses {
             }
         }
     }
+    public Asiento getseat(int seat){
+        return Asientos.get(seat);
+    }
 }
