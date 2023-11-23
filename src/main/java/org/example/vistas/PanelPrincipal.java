@@ -1,4 +1,4 @@
-package org.vistas;
+package org.example.vistas;
 
 
 import javax.swing.*;
