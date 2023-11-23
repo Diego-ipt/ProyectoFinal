@@ -35,4 +35,8 @@ public class Bus {
     public Asiento getAsiento(int Asiento){
         return Asientos.get(Asiento);
     }
+
+    public Bus getIdBus() {
+        return this;
+    }
 }

@@ -1,13 +1,15 @@
 package org.example.modelos;
 
+import java.util.Date;
+
 public class Pasaje {
     private int valor;
-    private String fecha;
-    private String hora;
+    private Date fecha;
+    private Date hora;
     private int asiento;
 
     //por qué se le pasa un int de asiento y no la clase Asiento?
-    public Pasaje(int asiento, String hora, FechasYTramo fechaytramo) throws NoHayDisponibilidadException {
+    public Pasaje(int asiento, Date hora, FechasYTramo fechaytramo) throws NoHayDisponibilidadException {
         this.asiento = asiento;
         this.fecha = fechaytramo.getFecha();
         this.hora = hora;
@@ -28,11 +30,11 @@ public class Pasaje {
         return this.valor;
     }
 
-    public String getFecha(){
+    public Date getFecha(){
         return this.fecha;
     }
 
-    public String getHora(){
+    public Date getHora(){
         return this.hora;
     }
 
