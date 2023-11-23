@@ -1,13 +1,14 @@
 package org.example;
-import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Fechas {
+public class FechasYTramo {
     private HashMap<String, Buses> busesPorHora;
     private String Fecha;
+    private Tramo tramo;
 
-    public Fechas(String Fecha){
+    public FechasYTramo(String Fecha, Tramo tramo){
         this.Fecha=Fecha;
+        this.tramo=tramo;
         busesPorHora = new HashMap<String, Buses>();
     }
     public String getFecha(){

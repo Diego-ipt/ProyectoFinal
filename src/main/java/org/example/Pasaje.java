@@ -5,16 +5,19 @@ public class Pasaje {
     private String fecha;
     private String hora;
     private int asiento;
-    public void Pasaje(int asiento, String hora, Fechas fecha) throws Exception {
+    public void Pasaje(int asiento, String hora, FechasYTramo fechaytramo) throws Exception {
         this.asiento=asiento;
-        this.fecha=fecha.getFecha();
+        this.fecha=fechaytramo.getFecha();
         this.hora=hora;
-        fecha.getBus(hora).OcuparAsiento(asiento);
-        if(fecha.getBus(hora).getseat(asiento).getTipo()=="Estandar"){
+        fechaytramo.getBus(hora).OcuparAsiento(asiento);
+        if(fechaytramo.getBus(hora).getseat(asiento).getTipo()=="Estandar"){
             valor=4000;
         }else{
-            valor=6000;
+            valor= (int) (4000*1.25);
         }
+    }
+    public String InfoPasaje(){
+        return "Asiento: " + this.asiento + ", Hora: " + this.hora + ", Fecha: " + this.fecha + ", Valor: " + this.valor;
     }
     public int getValor(){
         return this.valor;
