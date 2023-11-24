@@ -12,11 +12,6 @@ public class Efectivo extends Pago {
 
     @Override
     public String toStringPago() {
-        return "Método: Efectivo, Monto a pagar: " + getMonto() + ", Monto recibido: " + montoRecibido + ", Vuelto: " + calcDevolucion();
+        return "Método: Efectivo, Monto a pagar: " + getMonto() + ", Monto recibido: " + montoRecibido;
     }
-
-    private int calcDevolucion() {
-        return montoRecibido - getMonto();
-    }
-    
 }

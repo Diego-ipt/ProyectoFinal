@@ -6,11 +6,9 @@ public class FechasYTramo {
     private HashMap<Date, Bus> busesPorHora;
     //la fecha debería ser Date o String?
     private Date Fecha;
-    private Tramo tramo;
 
-    public FechasYTramo(Date Fecha, Tramo tramo){
+    public FechasYTramo(Date Fecha){
         this.Fecha=Fecha;
-        this.tramo=tramo;
         busesPorHora = new HashMap<Date, Bus>();
     }
     public Date getFecha(){

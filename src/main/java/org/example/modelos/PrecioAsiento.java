@@ -1,15 +1,15 @@
 package org.example.modelos;
 
 public enum PrecioAsiento {
-    CAMA(15000), SEMICAMA(10000);
+    CAMA(1.5F), SEMICAMA(1);
 
-    private int precio;
+    private float precio;
 
-    PrecioAsiento(int precio) {
+    PrecioAsiento(float precio) {
         this.precio = precio;
     }
 
-    public int getPrecio() {
+    public float getPrecio() {
         return precio;
     }
 

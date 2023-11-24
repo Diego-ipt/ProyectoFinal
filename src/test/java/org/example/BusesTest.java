@@ -13,8 +13,8 @@ public class BusesTest {
         Bus bus = new Bus(1);
         try {
             bus.OcuparAsiento(1);
-            Asiento asiento = bus.getAsiento(0);
-            assertEquals(true, asiento.getDisponibilidad());
+            Asiento asiento = bus.getAsiento(1);
+            assertTrue(asiento.getDisponibilidad());
         } catch (NoHayDisponibilidadException e) {
             System.out.println(e.getMessage());
         }

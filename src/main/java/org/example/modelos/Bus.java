@@ -24,7 +24,7 @@ public class Bus {
     public void OcuparAsiento(int numero) throws NoHayDisponibilidadException {
         if(numero > 0 && numero <= Asientos.size()){
             Asiento asiento = Asientos.get(numero - 1);
-            if(asiento.getDisponibilidad() == false){
+            if(!asiento.getDisponibilidad()){
                 throw new NoHayDisponibilidadException("El asiento " + numero + " ya está ocupado.");
             } else {
                 asiento.setDisponibilidad(false);
