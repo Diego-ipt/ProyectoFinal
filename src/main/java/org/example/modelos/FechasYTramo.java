@@ -32,4 +32,12 @@ public class FechasYTramo {
         }
         return busesPorHora.get(hora);
     }
+
+    public Tramo getTramo() {
+        return tramo;
+    }
+
+    public int precioTramo() {
+        return tramo.getPrecioTramo();
+    }
 }

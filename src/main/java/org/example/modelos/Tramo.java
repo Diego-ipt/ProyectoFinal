@@ -69,7 +69,7 @@ public class Tramo {
 
         return nombre;
     }
-    public int precio() {
+    public int getPrecioTramo() {
         return precio;
     }
     public String getOrigen(){
