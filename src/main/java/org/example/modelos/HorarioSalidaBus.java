@@ -1,7 +1,7 @@
 package org.example.modelos;
 
 public enum HorarioSalidaBus {
-    MAÑANA("8:00"),
+    MAÑANA("08:00"),
     MEDIODIA("12:00"),
     MEDIATARDE("15:00"),
     TARDE("19:00"),

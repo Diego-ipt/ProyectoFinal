@@ -15,7 +15,7 @@ public class Tramo {
         precio=dif*1200;
     }
 
-    private String getDestino(int ciudad) {
+    private String getDestino(int ciudad) throws IllegalArgumentException {
         String nombre = null;
         switch (ciudad) {
             case 1:
@@ -58,11 +58,12 @@ public class Tramo {
                 nombre = "Puerto Montt";
                 break;
             default:
-                break;
+                throw new IllegalArgumentException("Valor de ciudad no válido: " + ciudad);
         }
 
         return nombre;
     }
+
     public int getPrecioTramo() {
         return precio;
     }

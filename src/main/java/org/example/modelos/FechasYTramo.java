@@ -7,7 +7,7 @@ public class FechasYTramo {
     private Date fecha;
     private Tramo tramo;
 
-    public FechasYTramo(Date fecha, int origen, int destino) throws DestinoNoDisponibleException {
+    public FechasYTramo(Date fecha, int origen, int destino) throws DestinoNoDisponibleException, IllegalArgumentException {
         if(origen == destino) {
             throw new DestinoNoDisponibleException("Por favor, seleccione un destino distinto");
         }
@@ -25,11 +25,12 @@ public class FechasYTramo {
         return this.fecha;
     }
 
-    public Bus getBus(String hora){
-        if(busesPorHora.get(hora) == null) {
-            return null;
+    public Bus getBus(String hora) throws HorarioNoDisponibleException {
+        Bus bus = busesPorHora.get(hora);
+        if(bus == null) {
+            throw new HorarioNoDisponibleException("No hay buses disponibles a esta hora: " + hora);
         }
-        return busesPorHora.get(hora);
+        return bus;
     }
 
     public Tramo getTramo() {

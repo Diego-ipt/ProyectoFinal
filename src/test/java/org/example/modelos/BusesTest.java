@@ -1,11 +1,8 @@
-package org.example;
+package org.example.modelos;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.example.modelos.Asiento;
-import org.example.modelos.Bus;
-import org.example.modelos.AsientoNoDisponibleException;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BusesTest {
     @Test

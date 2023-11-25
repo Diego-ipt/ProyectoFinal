@@ -9,8 +9,7 @@ public class Pasaje {
     private int asiento;
     private Pago pago;
 
-    //por qué se le pasa un int de asiento y no la clase Asiento?
-    public Pasaje(int asiento, String hora, FechasYTramo fechaytramo, Pago pago) throws AsientoNoDisponibleException {
+    public Pasaje(int asiento, String hora, FechasYTramo fechaytramo, Pago pago) throws AsientoNoDisponibleException, HorarioNoDisponibleException {
         this.asiento = asiento;
         this.fecha = fechaytramo.getFecha();
         this.hora = hora;

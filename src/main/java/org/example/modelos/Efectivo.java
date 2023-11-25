@@ -3,15 +3,13 @@ package org.example.modelos;
 import java.util.Date;
 
 public class Efectivo extends Pago {
-    private int montoRecibido;
 
-    public Efectivo(int montoAPagar, Date fecha, int montoRecibido) {
-        super(montoAPagar, fecha);
-        this.montoRecibido = montoRecibido;
+    public Efectivo(Date fecha, int montoRecibido) {
+        super(montoRecibido, fecha);
     }
 
     @Override
     public String toStringPago() {
-        return "Método: Efectivo, Monto a pagar: " + getMonto() + ", Monto recibido: " + montoRecibido;
+        return "Método: Efectivo, Monto recibido: " + getMonto();
     }
 }
