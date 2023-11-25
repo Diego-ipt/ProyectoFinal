@@ -1,7 +1,7 @@
 package org.example.modelos;
 
 public enum PrecioAsiento {
-    CAMA(1.5F), SEMICAMA(1);
+    Cama(1.5F), SemiCama(1);
 
     private float precio;
 

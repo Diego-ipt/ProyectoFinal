@@ -12,13 +12,7 @@ public class Tramo {
 
         int dif = Math.abs(origen - destino);
         //precio a agregar por tramo
-        if(dif > 8) {
-            this.precio = 3000;
-        } else if(dif > 4 && dif <= 8) {
-            this.precio = 2000;
-        } else if(dif > 0 && dif <= 4) {
-            this.precio = 1000;
-        }
+        precio=dif*1200;
     }
 
     private String getDestino(int ciudad) {

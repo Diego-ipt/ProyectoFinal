@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 public class FechasYTramo {
     private HashMap<String, Bus> busesPorHora;
-    //la fecha debería ser Date o String?
     private Date fecha;
     private Tramo tramo;
 

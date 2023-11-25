@@ -21,7 +21,7 @@ public class Bus {
     }
 
     //este metodo debería ir acá?
-    public void OcuparAsiento(int numero) throws AsientoNoDisponibleException {
+    public void OcuparAsiento(int numero) throws AsientoNoDisponibleException{
         if(numero > 0 && numero <= Asientos.size()){
             Asiento asiento = Asientos.get(numero - 1);
             if(!asiento.getDisponibilidad()){
@@ -29,8 +29,11 @@ public class Bus {
             } else {
                 asiento.setDisponibilidad(false);
             }
+        } else {
+            throw new AsientoNoDisponibleException("El número de asiento " + numero + " es inválido.");
         }
     }
+
 
     public Asiento getAsiento(int Asiento){
         return Asientos.get(Asiento);

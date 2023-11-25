@@ -15,6 +15,11 @@ public class Pasaje {
         this.fecha = fechaytramo.getFecha();
         this.hora = hora;
         this.pago=pago;
+        if (fechaytramo.getBus(hora).getAsiento(asiento).tipoAsiento().equals("SemiCama")) {
+            this.valor = (int) (PrecioAsiento.SemiCama.getPrecio()*fechaytramo.precioTramo());
+        } else {
+            this.valor = (int) (PrecioAsiento.Cama.getPrecio()*fechaytramo.precioTramo());
+        }
         fechaytramo.getBus(hora).OcuparAsiento(asiento);
     }
     public String InfoPasaje(){
