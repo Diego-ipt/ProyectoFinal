@@ -5,11 +5,11 @@ import java.util.Date;
 public class Pasaje {
     private int valor;
     private Date fecha;
-    private Date hora;
+    private String hora;
     private int asiento;
 
     //por qué se le pasa un int de asiento y no la clase Asiento?
-    public Pasaje(int asiento, Date hora, FechasYTramo fechaytramo) throws NoHayDisponibilidadException {
+    public Pasaje(int asiento, String hora, FechasYTramo fechaytramo) throws AsientoNoDisponibleException {
         this.asiento = asiento;
         this.fecha = fechaytramo.getFecha();
         this.hora = hora;
@@ -34,7 +34,7 @@ public class Pasaje {
         return this.fecha;
     }
 
-    public Date getHora(){
+    public String getHora(){
         return this.hora;
     }
 

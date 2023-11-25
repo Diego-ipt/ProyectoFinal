@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.example.modelos.Asiento;
 import org.example.modelos.Bus;
-import org.example.modelos.NoHayDisponibilidadException;
+import org.example.modelos.AsientoNoDisponibleException;
 
 public class BusesTest {
     @Test
@@ -15,7 +15,7 @@ public class BusesTest {
             bus.OcuparAsiento(1);
             Asiento asiento = bus.getAsiento(0);
             assertEquals(true, asiento.getDisponibilidad());
-        } catch (NoHayDisponibilidadException e) {
+        } catch (AsientoNoDisponibleException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -27,7 +27,7 @@ public class BusesTest {
             bus.OcuparAsiento(1);
             bus.OcuparAsiento(1);
             // fail("Exception should be thrown");
-        } catch (NoHayDisponibilidadException e) {
+        } catch (AsientoNoDisponibleException e) {
             assertEquals("El asiento 1 ya está ocupado.", e.getMessage());
         }
     }

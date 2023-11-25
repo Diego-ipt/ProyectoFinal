@@ -21,11 +21,11 @@ public class Bus {
     }
 
     //este metodo debería ir acá?
-    public void OcuparAsiento(int numero) throws NoHayDisponibilidadException {
+    public void OcuparAsiento(int numero) throws AsientoNoDisponibleException {
         if(numero > 0 && numero <= Asientos.size()){
             Asiento asiento = Asientos.get(numero - 1);
             if(asiento.getDisponibilidad() == false){
-                throw new NoHayDisponibilidadException("El asiento " + numero + " ya está ocupado.");
+                throw new AsientoNoDisponibleException("El asiento " + numero + " ya está ocupado.");
             } else {
                 asiento.setDisponibilidad(false);
             }

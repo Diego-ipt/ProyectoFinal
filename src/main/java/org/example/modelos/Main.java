@@ -1,7 +1,17 @@
 package org.example.modelos;
 
+import java.util.Date;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        try {
+            FechasYTramo fyt = new FechasYTramo(new Date(), 3, 4);
+        } catch (DestinoNoDisponibleException e) {
+            
+        }
+
+        
+
     }
 }
