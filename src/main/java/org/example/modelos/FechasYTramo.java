@@ -1,6 +1,7 @@
 package org.example.modelos;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
 
 public class FechasYTramo {
     private HashMap<String, Bus> busesPorHora;
@@ -16,8 +17,9 @@ public class FechasYTramo {
         busesPorHora = new HashMap<String, Bus>();
 
         for (HorarioSalidaBus horario : HorarioSalidaBus.values()) {
-            busesPorHora.put(horario.getHora(), new Bus(1));
-            busesPorHora.put(horario.getHora(), new Bus(2));
+            Random r = new Random(1);
+            int random = r.nextInt(2) + 1;
+            busesPorHora.put(horario.getHora(), new Bus(random));
         }
 
     }

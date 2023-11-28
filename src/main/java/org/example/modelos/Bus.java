@@ -42,4 +42,9 @@ public class Bus {
     public Bus getIdBus() {
         return this;
     }
+
+    public int tamañoAsientos() {
+        return this.Asientos.size();
+    }
+    
 }
