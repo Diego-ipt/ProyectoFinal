@@ -1,0 +1,102 @@
+package org.example.vistas;
+
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.swing.*;
+import org.example.modelos.*;
+
+public class PanelFechaDestino extends JPanel implements ActionListener {
+    //primer panel que se muestra
+    private JLabel labelorigen;
+    private JLabel labeldestino;
+    private JLabel labelfecha;
+    private JTextField textfecha;
+    private JComboBox<Destinos> origenes;
+    private JComboBox<Destinos> destinos;
+    private JButton buscarButton;
+
+    private CardLayout cardLayout;
+    private JPanel cards;
+
+    private FechasYTramo fechasYTramo;
+
+
+    public PanelFechaDestino(CardLayout cardLayout, JPanel cards) {
+        this.cardLayout = cardLayout;
+        this.cards = cards;
+
+        this.setLayout(new BorderLayout());
+        JPanel panelCentral = new JPanel();
+        panelCentral.setLayout(new GridLayout(3,2));
+
+        labelorigen = new JLabel("Seleccione su origen: ");
+        labeldestino = new JLabel("Seleccione su destino: ");
+        labelfecha = new JLabel("Fecha de viaje (DD/MM/AA): ");
+        textfecha = new JTextField (10);
+
+        origenes = new JComboBox<>(Destinos.values());
+        destinos = new JComboBox<>(Destinos.values());
+
+        buscarButton = new JButton("Buscar pasajes");
+
+        buscarButton.addActionListener(this);
+
+        panelCentral.add(labelorigen);
+        panelCentral.add(origenes);
+        panelCentral.add(labeldestino);
+        panelCentral.add(destinos);
+        panelCentral.add(labelfecha);
+        panelCentral.add(textfecha);
+
+        JPanel btnPanel = new JPanel();
+        btnPanel.add(buscarButton);
+
+        this.add(panelCentral, BorderLayout.CENTER);
+        this.add(btnPanel, BorderLayout.SOUTH);
+
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Destinos origenSeleccionado = (Destinos) origenes.getSelectedItem();
+        Destinos destinoSeleccionado = (Destinos) destinos.getSelectedItem();
+        String fechaSeleccionada = textfecha.getText();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");        
+
+        if (destinoSeleccionado != null && origenSeleccionado != null && fechaSeleccionada != null) {
+            String mensajeError = "";
+
+             try {
+                Date fechaFormateada = formato.parse(fechaSeleccionada);
+                
+                try {
+                    fechasYTramo = new FechasYTramo(fechaFormateada, origenSeleccionado.getNumCiudad(), destinoSeleccionado.getNumCiudad());
+
+                    cardLayout.next(cards);
+                    
+                } catch(DestinoNoDisponibleException error) {
+                    mensajeError = error.getMessage();
+
+                    JOptionPane.showMessageDialog(this, mensajeError);
+                }
+            
+            } catch (ParseException e1) {
+                mensajeError = "Error con la fecha seleccionada. Inténtelo de nuevo";
+
+                JOptionPane.showMessageDialog(this, mensajeError);
+            }
+
+        }
+    }
+
+
+    // public Date transfFecha();
+}
