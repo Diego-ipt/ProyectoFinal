@@ -1,10 +1,12 @@
 package org.example.vistas;
 
+import org.example.modelos.DestinoNoDisponibleException;
+
 import javax.swing.JFrame;
 
 public class Ventana extends JFrame {
     
-    public Ventana() {
+    public Ventana() throws DestinoNoDisponibleException {
         super();
         this.setTitle("Venta de pasajes de Bus");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

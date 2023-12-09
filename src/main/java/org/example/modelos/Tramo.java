@@ -74,5 +74,39 @@ public class Tramo {
     public String getDestino(){
         return this.destino;
     }
+    public int CiudadNum(String ciudad) {
+        switch (ciudad) {
+            case "Arica":
+                return 1;
+            case "Iquique":
+                return 2;
+            case "Calama":
+                return 3;
+            case "Antofagasta":
+                return 4;
+            case "Copiapó":
+                return 5;
+            case "La Serena":
+                return 6;
+            case "Santiago":
+                return 7;
+            case "Rancagua":
+                return 8;
+            case "Talca":
+                return 9;
+            case "Concepción":
+                return 10;
+            case "Temuco":
+                return 11;
+            case "Valdivia":
+                return 12;
+            case "Puerto Montt":
+                return 13;
+            default:
+                throw new IllegalArgumentException("Nombre de ciudad no válido: " + ciudad);
+        }
+    }
+
+
 }
 
