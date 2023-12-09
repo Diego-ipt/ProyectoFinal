@@ -1,6 +1,8 @@
 package org.example.vistas;
 
 
+import org.example.modelos.DestinoNoDisponibleException;
+
 import javax.swing.*;
 
 import java.awt.event.MouseEvent;
@@ -15,7 +17,7 @@ class PanelPrincipal extends JPanel {
     private PanelFechaDestino panelFechaDestino;
     private PanelHorarios panelHorarios;
 
-    public PanelPrincipal () {
+    public PanelPrincipal () throws DestinoNoDisponibleException {
         this.setLayout(new BorderLayout());
 
         cardLayout = new CardLayout();
