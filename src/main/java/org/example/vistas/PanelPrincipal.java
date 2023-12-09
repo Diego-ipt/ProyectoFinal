@@ -22,7 +22,7 @@ class PanelPrincipal extends JPanel {
         cards = new JPanel(cardLayout);
 
         panelFechaDestino = new PanelFechaDestino(cardLayout, cards);
-        panelHorarios = new PanelHorarios();
+        panelHorarios = new PanelHorarios(panelFechaDestino, cardLayout, cards);
 
         cards.add(panelFechaDestino, "panelFechaDestino");
         cards.add(panelHorarios,"panelHorarios");

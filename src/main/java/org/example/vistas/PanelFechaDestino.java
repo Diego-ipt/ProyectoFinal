@@ -14,9 +14,6 @@ import org.example.modelos.*;
 
 public class PanelFechaDestino extends JPanel implements ActionListener {
     //primer panel que se muestra
-    private JLabel labelorigen;
-    private JLabel labeldestino;
-    private JLabel labelfecha;
     private JTextField textfecha;
     private JComboBox<Destinos> origenes;
     private JComboBox<Destinos> destinos;
@@ -36,9 +33,9 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
         JPanel panelCentral = new JPanel();
         panelCentral.setLayout(new GridLayout(3,2));
 
-        labelorigen = new JLabel("Seleccione su origen: ");
-        labeldestino = new JLabel("Seleccione su destino: ");
-        labelfecha = new JLabel("Fecha de viaje (DD/MM/AA): ");
+        JLabel labelorigen = new JLabel("Seleccione su origen: ");
+        JLabel labeldestino = new JLabel("Seleccione su destino: ");
+        JLabel labelfecha = new JLabel("Fecha de viaje (DD/MM/AAAA): ");
         textfecha = new JTextField (10);
 
         origenes = new JComboBox<>(Destinos.values());
@@ -81,7 +78,7 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
                     fechasYTramo = new FechasYTramo(fechaFormateada, origenSeleccionado.getNumCiudad(), destinoSeleccionado.getNumCiudad());
 
                     cardLayout.next(cards);
-                    
+
                 } catch(DestinoNoDisponibleException error) {
                     mensajeError = error.getMessage();
 
@@ -95,8 +92,11 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
             }
 
         }
+
     }
 
+    public FechasYTramo getFechasYTramo() {
+        return fechasYTramo;
+    }
 
-    // public Date transfFecha();
 }
