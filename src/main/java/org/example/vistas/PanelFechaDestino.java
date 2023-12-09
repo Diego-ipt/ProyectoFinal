@@ -26,8 +26,8 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
     private ArrayList<FechasYTramo> fechasYTramo;
 
     public PanelFechaDestino(CardLayout cardLayout, JPanel cards) throws DestinoNoDisponibleException {
-        ArrayList<FechasYTramo> fechasYTramo = new ArrayList<>();
-        fechasYTramo.add(new FechasYTramo(new Date(), 1, 5));//para que el vector no sea null
+        this.fechasYTramo = new ArrayList<>(); // Assign the new ArrayList to the class field
+        fechasYTramo.add(new FechasYTramo(new Date(), 1, 5)); // Now this line is modifying the class field
         this.cardLayout = cardLayout;
         this.cards = cards;
 
@@ -107,8 +107,5 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
 
     }
 
-    public FechasYTramo getFechasYTramo() {
-        return fechasYTramo;
-    }
 
 }

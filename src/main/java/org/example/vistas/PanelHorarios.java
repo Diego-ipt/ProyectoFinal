@@ -18,7 +18,7 @@ public class PanelHorarios extends JPanel{
     private CardLayout cardLayout;
     private JPanel cards;
     
-    public PanelHorarios(FechasYTramo fechasYTramo, CardLayout cardLayout, JPanel cards) {
+    public PanelHorarios( CardLayout cardLayout, JPanel cards) {
         this.cardLayout = cardLayout;
         this.cards = cards;
         this.setLayout(new BorderLayout());
