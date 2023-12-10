@@ -3,10 +3,7 @@ package org.example.vistas;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.BoxLayout;
 import javax.swing.*;
 
@@ -25,9 +22,16 @@ public class panelPasajes extends JPanel {
     public void setPasaje(ArrayList<Asiento> Asientos,String hora,FechasYTramo fechaytramo, Pago pago) throws AsientoNoDisponibleException, HorarioNoDisponibleException {
         // Configurar el GridLayout
         setLayout(new BorderLayout());
-        JPanel pasajes= new JPanel();
+        pasajes= new JPanel();
         pasajes.setLayout(new GridLayout((int) Math.ceil(Asientos.size() / 3.0)+1, 3, 10, 10));
-        this.add(new Button("¿Terminar?"), BorderLayout.NORTH);
+        JButton terminar= new JButton("¿Terminar?");
+        terminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards, "panelFechaDestino");
+            }
+        });
+        this.add(terminar,BorderLayout.NORTH);
         this.add(pasajes, BorderLayout.CENTER);
         // Crear y agregar paneles de pasaje al GridLayout
         for (Asiento asiento : Asientos) {

@@ -37,6 +37,7 @@ class PanelPrincipal extends JPanel {
         cards.add(panelFechaDestino, "panelFechaDestino");
         cards.add(panelHorarios,"panelHorarios");
         cards.add(panelcompra,"panelCompra");
+        cards.add(panelpasaje,"panelpasaje");
         this.add(cards, BorderLayout.CENTER);
 
     }
