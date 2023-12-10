@@ -17,6 +17,7 @@ public class PanelHorarios extends JPanel{
     private FechasYTramo fechasYTramo;
     private CardLayout cardLayout;
     private JPanel cards;
+    private Mediador mediador;
     
     public PanelHorarios(CardLayout cardLayout, JPanel cards) {
         this.cardLayout = cardLayout;
@@ -53,5 +54,11 @@ public class PanelHorarios extends JPanel{
 
             this.add(panelNorte, BorderLayout.NORTH);
         }
+    }
+    public void setFechaYTramo(FechasYTramo fechaytramo) {
+        this.fechasYTramo = fechaytramo;
+    }
+    public void refreshMediador(Mediador mediador){
+        this.mediador=mediador;
     }
 }
