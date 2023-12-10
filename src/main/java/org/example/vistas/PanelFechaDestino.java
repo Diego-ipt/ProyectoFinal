@@ -24,8 +24,7 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
     private JPanel cards;
 
     private ArrayList<FechasYTramo> fechasYTramo;
-
-    private PanelHorarios panelHorarios;
+    private Mediador mediador;
 
     public PanelFechaDestino(CardLayout cardLayout, JPanel cards) throws DestinoNoDisponibleException {
         this.fechasYTramo = new ArrayList<>();
@@ -96,10 +95,7 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
                         fechasYTramo.add(fechasTramo);
                         fechasyT = fechasTramo;
                     }
-
-                    this.panelHorarios = new PanelHorarios(fechasyT, cardLayout, cards);
-                    cards.add(panelHorarios);
-
+                    mediador.refresh(fechasyT);
                     cardLayout.next(cards);
 
                 } catch(DestinoNoDisponibleException error) {
@@ -117,9 +113,7 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
         }
 
     }
-
-    public PanelHorarios getPanelHorarios() {
-        return this.panelHorarios;
+    public void refreshMediador(Mediador mediador){
+        this.mediador=mediador;
     }
-
 }
