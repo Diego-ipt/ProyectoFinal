@@ -1,15 +1,14 @@
 package org.example.vistas;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.BoxLayout;
 import javax.swing.*;
 import org.example.modelos.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Date;
 
 
 public class PanelCompra extends JPanel {
@@ -19,16 +18,37 @@ public class PanelCompra extends JPanel {
     private Mediador mediador;
     private JPanel panelInfo;
     private JPanel panelPisos;
-    private JRadioButton Tarjeta;
-    private JRadioButton Efectivo;
-    private ButtonGroup paymentGroup;
+    private JButton Tarjeta;
+    private JButton Efectivo;
     private JPanel panelAsientos1;
     private JPanel panelAsientos2;
+    private ArrayList<Asiento> asientosSeleccionados;
+    private Pago pago;
     
     public PanelCompra(CardLayout cardLayout, JPanel cards) {
         this.cardLayout = cardLayout;
         this.cards = cards;
         this.setLayout(new BorderLayout());
+        asientosSeleccionados = new ArrayList<>();
+    }
+    private void handlePaymentMethodSelection() throws AsientoNoDisponibleException, HorarioNoDisponibleException {
+        for (Component component : panelPisos.getComponents()) {
+            if (component instanceof JPanel) {
+                JPanel panelAsientos = (JPanel) component;
+                for (Component seatComponent : panelAsientos.getComponents()) {
+                    if (seatComponent instanceof JCheckBox) {
+                        JCheckBox checkBox = (JCheckBox) seatComponent;
+                        if (checkBox.isSelected()) {
+                            int seatNumber = extractSeatNumberFromCheckBoxText(checkBox.getText());
+                            Asiento seat = bus.getAsiento(seatNumber - 1);
+                            asientosSeleccionados.add(seat);
+                        }
+                    }
+                }
+            }
+        }
+        mediador.refresh(asientosSeleccionados,pago);
+        cardLayout.next(cards);
     }
     public void refreshMediador(Mediador mediador){
         this.mediador=mediador;
@@ -39,15 +59,25 @@ public class PanelCompra extends JPanel {
             this.panelInfo = new JPanel();
             this.panelPisos = new JPanel();
             this.panelInfo.setLayout(new BoxLayout(panelInfo,BoxLayout.X_AXIS));
-            this.Tarjeta = new JRadioButton("Tarjeta");
-            this.Efectivo = new JRadioButton("Efectivo");
-            this.paymentGroup = new ButtonGroup();
-            this.paymentGroup.add(Tarjeta);
-            this.paymentGroup.add(Efectivo);
+            this.Tarjeta = new JButton("Tarjeta");
+            this.Efectivo = new JButton("Efectivo");
             this.panelInfo.add(Tarjeta);
             this.panelInfo.add(Efectivo);
-
-            if(bus.tamañoAsientos()==70){
+            Tarjeta.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    pago= new Tarjeta(999, new Date(), "Débito");
+                    //handlePaymentMethodSelection();
+                }
+            });
+            Efectivo.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    pago= new Efectivo(new Date(),999);
+                    //handlePaymentMethodSelection();
+                }
+            });
+            if(bus.tamañoAsientos()==72){
                 this.panelPisos.setLayout(new BoxLayout(panelPisos,BoxLayout.X_AXIS));
                 this.panelAsientos1 = new JPanel(new GridLayout(10, 4));
                 ((GridLayout) panelAsientos1.getLayout()).setHgap(10);
@@ -87,14 +117,12 @@ public class PanelCompra extends JPanel {
         }
     }
     private JComponent createSeatComponent(int seatNumber, String seatType, boolean disponibilidad) {
-        String busy = disponibilidad ? "ocupado" : "libre";
-
-        if (disponibilidad) {
+        if (!disponibilidad) {
             // Seat is occupied, display a label
-            return new JLabel("Asiento " + seatNumber + " - " + seatType + "." + busy);
+            return new JLabel("Asiento " + seatNumber + " - " + seatType + "." + "ocupado");
         } else {
             // Seat is available, create a checkbox
-            JCheckBox checkBox = new JCheckBox("Asiento " + seatNumber + " - " + seatType + "." + busy);
+            JCheckBox checkBox = new JCheckBox("Asiento " + seatNumber + " - " + seatType + "." + "libre");
             checkBox.addActionListener(e -> {
                 try {
                     if (checkBox.isSelected()) {
@@ -112,5 +140,9 @@ public class PanelCompra extends JPanel {
             });
             return checkBox;
         }
+    }
+    private int extractSeatNumberFromCheckBoxText(String checkBoxText) {
+        String[] parts = checkBoxText.split(" ");
+        return Integer.parseInt(parts[1]);
     }
 }
