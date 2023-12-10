@@ -37,7 +37,7 @@ public class PanelCompra extends JPanel {
             this.panelInfo.add(Tarjeta);
             this.panelInfo.add(Efectivo);
 
-            if(bus.tamañoAsientos()==70){
+            if(bus.tamañoAsientos()==72){
                 this.panelPisos.setLayout(new BoxLayout(panelPisos,BoxLayout.X_AXIS));
                 this.panelAsientos1 = new JPanel(new GridLayout(10, 4));
                 ((GridLayout) panelAsientos1.getLayout()).setHgap(10);
