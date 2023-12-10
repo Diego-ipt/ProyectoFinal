@@ -25,8 +25,6 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
 
     private ArrayList<FechasYTramo> fechasYTramo;
 
-    private PanelHorarios panelHorarios;
-
     public PanelFechaDestino(CardLayout cardLayout, JPanel cards) throws DestinoNoDisponibleException {
         this.fechasYTramo = new ArrayList<>();
         this.fechasYTramo.add(new FechasYTramo(new Date(), 1, 5));//para que el vector no sea null
@@ -96,9 +94,8 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
                         fechasYTramo.add(fechasTramo);
                         fechasyT = fechasTramo;
                     }
-
-                    this.panelHorarios = new PanelHorarios(fechasyT, cardLayout, cards);
-                    cards.add(panelHorarios);
+                    
+                    
 
                     cardLayout.next(cards);
 
@@ -118,8 +115,13 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
 
     }
 
-    public PanelHorarios getPanelHorarios() {
-        return this.panelHorarios;
-    }
+    // public PanelHorarios getPanelHorarios() {
+    //     return this.panelHorarios;
+    // }
+
+//     public void añadirPanel(FechasYTramo fYTramo) {
+//         this.panelHorarios = new PanelHorarios(fYTramo, cardLayout, cards);
+//         cards.add(panelHorarios);
+//     }
 
 }

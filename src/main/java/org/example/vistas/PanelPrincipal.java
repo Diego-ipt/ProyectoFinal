@@ -24,10 +24,11 @@ class PanelPrincipal extends JPanel {
         cards = new JPanel(cardLayout);
 
         panelFechaDestino = new PanelFechaDestino(cardLayout, cards);
-        panelHorarios = panelFechaDestino.getPanelHorarios();
+        panelHorarios = new PanelHorarios(cardLayout, cards);
 
         cards.add(panelFechaDestino, "panelFechaDestino");
-        // cards.add(panelHorarios,"panelHorarios");
+        cards.add(panelHorarios,"panelHorarios");
+        
         this.add(cards, BorderLayout.CENTER);
 
     }
