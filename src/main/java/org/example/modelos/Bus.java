@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 public class Bus {
     private ArrayList<Asiento> Asientos;
+    private int pisos;
 
     public Bus(int pisos){//solo 1 o 2 pisos
         //que pasa si el int q recibe es > 2?
         Asientos = new ArrayList<Asiento>();
         int numAsientos = (pisos == 1) ? 40 : 70;
         int numSalonCama = numAsientos / 3;
+        this.pisos = pisos;
 
         for(int i = 0; i < numAsientos; i++){
             if(i < numSalonCama){
@@ -46,5 +48,9 @@ public class Bus {
     public int tamañoAsientos() {
         return this.Asientos.size();
     }
+
+    public int getNumPisos() {
+        return pisos;
+    }    
     
 }

@@ -2,6 +2,7 @@ package org.example.vistas;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import org.example.modelos.*;
 
 public class PanelFechaDestino extends JPanel implements ActionListener {
@@ -34,7 +37,8 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
 
         this.setLayout(new BorderLayout());
         JPanel panelCentral = new JPanel();
-        panelCentral.setLayout(new GridLayout(3,2));
+        panelCentral.setLayout(new GridLayout(3,2, 0, 50));
+        panelCentral.setBorder(new EmptyBorder(10, 10, 0, 10)); // Espaciado de 10 píxeles en cada lado
 
         JLabel labelorigen = new JLabel("Seleccione su origen: ");
         JLabel labeldestino = new JLabel("Seleccione su destino: ");
@@ -56,6 +60,7 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
         panelCentral.add(textfecha);
 
         JPanel btnPanel = new JPanel();
+        btnPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         btnPanel.add(buscarButton);
 
         this.add(panelCentral, BorderLayout.CENTER);
