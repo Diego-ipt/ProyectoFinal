@@ -22,12 +22,23 @@ public class PanelCompra extends JPanel {
     public PanelCompra(CardLayout cardLayout, JPanel cards) {
         this.cardLayout = cardLayout;
         this.cards = cards;
-        
+        this.setLayout(new BorderLayout());
     }
     public void refreshMediador(Mediador mediador){
         this.mediador=mediador;
     }
     public void setbus(Bus bus){
         this.bus=bus;
+        if(bus!=null){
+            JPanel panelInfo = new JPanel();
+            JPanel panelAsientos = new JPanel();
+            if(bus.tamañoAsientos()==70){
+
+            } else if (bus.tamañoAsientos()==40) {
+
+            }
+            this.add(panelInfo, BorderLayout.NORTH);
+            this.add(panelAsientos, BorderLayout.CENTER);
+        }
     }
 }

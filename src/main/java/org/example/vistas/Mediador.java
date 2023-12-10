@@ -14,12 +14,12 @@ public class Mediador {
         this.fechaytramo=fechaytramo;
         this.panelHorarios.setFechaYTramo(fechaytramo);
     }
-    public void refresh(Bus bus){
-        this.bus=bus;
+    public void refresh(String hora) throws HorarioNoDisponibleException {
+        this.bus=this.fechaytramo.getBus(hora);
         this.panelcompra.setbus(bus);
     }
     public void refresh(Pasaje pasaje){
-        this.pasaje=pasaje;
+        //this.pasaje=pasaje;
         //this.panelpasaje.setpasaje(pasaje);
     }
     public void RefreshAllPaneles(PanelFechaDestino panelFechaDestino, PanelHorarios panelHorarios, PanelCompra panelcompra){
