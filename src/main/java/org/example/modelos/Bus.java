@@ -1,10 +1,12 @@
 package org.example.modelos;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Bus {
     private ArrayList<Asiento> Asientos;
     private int pisos;
+    private String id;
 
     public Bus(int pisos){//solo 1 o 2 pisos
         //que pasa si el int q recibe es > 2?
@@ -12,6 +14,7 @@ public class Bus {
         int numAsientos = (pisos == 1) ? 40 : 72;
         int numSalonCama = numAsientos / 3;
         this.pisos = pisos;
+        this.id = this.toString().substring(24);
 
         for(int i = 0; i < numAsientos; i++){
             if(i < numSalonCama){
@@ -40,8 +43,8 @@ public class Bus {
         return Asientos.get(Asiento);
     }
 
-    public Bus getIdBus() {
-        return this;
+    public String getIdBus() {
+        return id;
     }
 
     public int tamañoAsientos() {
@@ -51,5 +54,5 @@ public class Bus {
     public int getNumPisos() {
         return pisos;
     }    
-    
+
 }
