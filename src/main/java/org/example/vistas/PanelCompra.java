@@ -5,6 +5,11 @@ import javax.swing.BoxLayout;
 import javax.swing.*;
 import org.example.modelos.*;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Date;
+
 
 public class PanelCompra extends JPanel {
     private CardLayout cardLayout;
@@ -17,11 +22,33 @@ public class PanelCompra extends JPanel {
     private JButton Efectivo;
     private JPanel panelAsientos1;
     private JPanel panelAsientos2;
+    private ArrayList<Asiento> asientosSeleccionados;
+    private Pago pago;
     
     public PanelCompra(CardLayout cardLayout, JPanel cards) {
         this.cardLayout = cardLayout;
         this.cards = cards;
         this.setLayout(new BorderLayout());
+        asientosSeleccionados = new ArrayList<>();
+    }
+    private void handlePaymentMethodSelection() throws AsientoNoDisponibleException, HorarioNoDisponibleException {
+        for (Component component : panelPisos.getComponents()) {
+            if (component instanceof JPanel) {
+                JPanel panelAsientos = (JPanel) component;
+                for (Component seatComponent : panelAsientos.getComponents()) {
+                    if (seatComponent instanceof JCheckBox) {
+                        JCheckBox checkBox = (JCheckBox) seatComponent;
+                        if (checkBox.isSelected()) {
+                            int seatNumber = extractSeatNumberFromCheckBoxText(checkBox.getText());
+                            Asiento seat = bus.getAsiento(seatNumber - 1);
+                            asientosSeleccionados.add(seat);
+                        }
+                    }
+                }
+            }
+        }
+        mediador.refresh(asientosSeleccionados,pago);
+        cardLayout.next(cards);
     }
     public void refreshMediador(Mediador mediador){
         this.mediador=mediador;
@@ -36,7 +63,20 @@ public class PanelCompra extends JPanel {
             this.Efectivo = new JButton("Efectivo");
             this.panelInfo.add(Tarjeta);
             this.panelInfo.add(Efectivo);
-
+            Tarjeta.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    pago= new Tarjeta(999, new Date(), "Débito");
+                    //handlePaymentMethodSelection();
+                }
+            });
+            Efectivo.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    pago= new Efectivo(new Date(),999);
+                    //handlePaymentMethodSelection();
+                }
+            });
             if(bus.tamañoAsientos()==72){
                 this.panelPisos.setLayout(new BoxLayout(panelPisos,BoxLayout.X_AXIS));
                 this.panelAsientos1 = new JPanel(new GridLayout(10, 4));
@@ -101,5 +141,8 @@ public class PanelCompra extends JPanel {
             return checkBox;
         }
     }
-
+    private int extractSeatNumberFromCheckBoxText(String checkBoxText) {
+        String[] parts = checkBoxText.split(" ");
+        return Integer.parseInt(parts[1]);
+    }
 }
