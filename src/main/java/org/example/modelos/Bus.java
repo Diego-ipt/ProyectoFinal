@@ -11,7 +11,7 @@ public class Bus {
     public Bus(int pisos){//solo 1 o 2 pisos
         //que pasa si el int q recibe es > 2?
         Asientos = new ArrayList<Asiento>();
-        int numAsientos = (pisos == 1) ? 40 : 70;
+        int numAsientos = (pisos == 1) ? 40 : 72;
         int numSalonCama = numAsientos / 3;
         this.pisos = pisos;
         this.id = this.toString().substring(24);
@@ -26,10 +26,10 @@ public class Bus {
     }
 
     //este metodo debería ir acá?
-    public void OcuparAsiento(int numero) throws AsientoNoDisponibleException{
-        if(numero > 0 && numero <= Asientos.size()){
+    public void OcuparAsiento(int numero) throws AsientoNoDisponibleException {
+        if (numero > 0 && numero <= Asientos.size()) {
             Asiento asiento = Asientos.get(numero - 1);
-            if(!asiento.getDisponibilidad()){
+            if (!asiento.getDisponibilidad()) {
                 throw new AsientoNoDisponibleException("El asiento " + numero + " ya está ocupado.");
             } else {
                 asiento.setDisponibilidad(false);
@@ -38,7 +38,6 @@ public class Bus {
             throw new AsientoNoDisponibleException("El número de asiento " + numero + " es inválido.");
         }
     }
-
 
     public Asiento getAsiento(int Asiento){
         return Asientos.get(Asiento);
