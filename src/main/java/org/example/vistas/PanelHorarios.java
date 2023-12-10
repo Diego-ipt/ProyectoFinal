@@ -24,7 +24,6 @@ public class PanelHorarios extends JPanel{
         this.setLayout(new BorderLayout());
 
         if(fechasYTramo != null) {
-            System.out.println("hola");
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
             String fecha = formato.format(fechasYTramo.getFecha());
             String origen = fechasYTramo.getTramo().getOrigen();
@@ -40,9 +39,11 @@ public class PanelHorarios extends JPanel{
             panelLabels.add(labelFecha);
 
             JPanel panelNorte = new JPanel();
+            JPanel panelLabel = new JPanel();
             JLabel labelTitulo = new JLabel("Horarios disponibles");
+            panelLabel.add(labelTitulo);
 
-            panelNorte.add(labelTitulo, BorderLayout.CENTER);
+            panelNorte.add(panelLabel, BorderLayout.CENTER);
             panelNorte.add(panelLabels, BorderLayout.SOUTH);
 
             this.add(panelNorte, BorderLayout.NORTH);

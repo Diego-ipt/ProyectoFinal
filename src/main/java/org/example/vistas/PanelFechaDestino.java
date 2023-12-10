@@ -25,9 +25,11 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
 
     private ArrayList<FechasYTramo> fechasYTramo;
 
+    private PanelHorarios panelHorarios;
+
     public PanelFechaDestino(CardLayout cardLayout, JPanel cards) throws DestinoNoDisponibleException {
-        ArrayList<FechasYTramo> fechasYTramo = new ArrayList<>();
-        fechasYTramo.add(new FechasYTramo(new Date(), 1, 5));//para que el vector no sea null
+        this.fechasYTramo = new ArrayList<>();
+        this.fechasYTramo.add(new FechasYTramo(new Date(), 1, 5));//para que el vector no sea null
         this.cardLayout = cardLayout;
         this.cards = cards;
 
@@ -78,17 +80,26 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
                 
                 try {
                     boolean encontrado = false;
+                    FechasYTramo fechasyT = null;
                     for (FechasYTramo fyt : fechasYTramo) {
                         if (fyt.getFecha().equals(fechaFormateada)
                                 && (fyt.getTramo().CiudadNum(fyt.getTramo().getOrigen()) == origenSeleccionado.getNumCiudad())
                                 && (fyt.getTramo().CiudadNum(fyt.getTramo().getDestino()) == destinoSeleccionado.getNumCiudad())) {
+                                    
+                            fechasyT = fyt;
                             encontrado = true;
                             break;
                         }
                     }
                     if (!encontrado) {
-                        fechasYTramo.add(new FechasYTramo(fechaFormateada, origenSeleccionado.getNumCiudad(), destinoSeleccionado.getNumCiudad()));
+                        FechasYTramo fechasTramo =  new FechasYTramo(fechaFormateada, origenSeleccionado.getNumCiudad(), destinoSeleccionado.getNumCiudad());
+                        fechasYTramo.add(fechasTramo);
+                        fechasyT = fechasTramo;
                     }
+
+                    this.panelHorarios = new PanelHorarios(fechasyT, cardLayout, cards);
+                    cards.add(panelHorarios);
+
                     cardLayout.next(cards);
 
                 } catch(DestinoNoDisponibleException error) {
@@ -107,8 +118,8 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
 
     }
 
-    public FechasYTramo getFechasYTramo() {
-        return fechasYTramo;
+    public PanelHorarios getPanelHorarios() {
+        return this.panelHorarios;
     }
 
 }
