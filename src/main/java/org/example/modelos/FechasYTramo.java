@@ -17,7 +17,7 @@ public class FechasYTramo {
         busesPorHora = new HashMap<String, Bus>();
 
         for (HorarioSalidaBus horario : HorarioSalidaBus.values()) {
-            Random r = new Random(1);
+            Random r = new Random();
             int random = r.nextInt(2) + 1;
             busesPorHora.put(horario.getHora(), new Bus(random));
         }

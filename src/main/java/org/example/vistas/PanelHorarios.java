@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.*;
 
 import org.example.modelos.Bus;
@@ -52,16 +53,32 @@ public class PanelHorarios extends JPanel{
 
             panelNorte.add(panelTitulo, BorderLayout.CENTER);
             panelNorte.add(panelLabels, BorderLayout.SOUTH);
+            panelNorte.setBorder(new EmptyBorder(10, 10, 10, 10));
 
             crearTabla();
 
+            // Quitar el JScrollPane y agregar la tabla directamente al panelCentral
+            JPanel panelCentral = new JPanel(new BorderLayout());
+            panelCentral.add(tabla.getTableHeader(), BorderLayout.NORTH);
+            panelCentral.add(tabla, BorderLayout.CENTER);
+            panelCentral.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+            this.add(panelCentral, BorderLayout.CENTER);
             this.add(panelNorte, BorderLayout.NORTH);
 
         }
     }
 
     public void crearTabla() {
-        modeloTabla = new DefaultTableModel();
+
+        modeloTabla = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                // Hacer que todas las celdas sean no editables (no seleccionables)
+                return false;
+            }
+        };
+
         tabla = new JTable();
 
         String [] columnas = new String[] {"Seleccionar", "Hora de salida", "Id_Bus", "Número de pisos"};
@@ -84,9 +101,6 @@ public class PanelHorarios extends JPanel{
                 
             }
         }
-
-        JScrollPane scrollPane = new JScrollPane(tabla);
-        this.add(scrollPane, BorderLayout.CENTER);
     }
 
     public void refreshMediador(Mediador mediador){
