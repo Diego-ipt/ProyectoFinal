@@ -2,18 +2,15 @@ package org.example.vistas;
 
 import java.awt.*;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.metal.MetalBorders.TableHeaderBorder;
 import javax.swing.table.*;
 
 import org.example.modelos.Bus;
 import org.example.modelos.FechasYTramo;
 import org.example.modelos.HorarioNoDisponibleException;
 import org.example.modelos.HorarioSalidaBus;
-import org.w3c.dom.events.MouseEvent;
 
 public class PanelHorarios extends JPanel{
     //segundo panel q se muestra
@@ -43,40 +40,58 @@ public class PanelHorarios extends JPanel{
             JLabel labelOrigen = new JLabel("Origen: " + origen);
             JLabel labelDestino = new JLabel("Destino: " + destino);
 
+            labelFecha.setForeground(Color.DARK_GRAY);
+            labelOrigen.setForeground(Color.DARK_GRAY);
+            labelDestino.setForeground(Color.DARK_GRAY);
+
+
             JPanel panelLabels = new JPanel();
             panelLabels.add(labelOrigen);
             panelLabels.add(labelDestino);
             panelLabels.add(labelFecha);
 
-            JPanel panelNorte = new JPanel();
-            JPanel panelTitulo = new JPanel();
             JLabel labelTitulo = new JLabel("Horarios disponibles");
-            panelTitulo.add(labelTitulo);
+            labelTitulo.setFont(new Font(labelTitulo.getFont().getName(), Font.BOLD, 20));
+            labelTitulo.setForeground(Color.DARK_GRAY);
 
-            panelNorte.add(panelTitulo, BorderLayout.CENTER);
-            panelNorte.add(panelLabels, BorderLayout.SOUTH);
+            JPanel panelNorte = new JPanel(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.anchor = GridBagConstraints.NORTH;
+            panelNorte.add(labelTitulo, gbc);
+
+            gbc.gridy = 1;
+            gbc.anchor = GridBagConstraints.CENTER;
+            panelNorte.add(labelOrigen, gbc);
+            gbc.gridy = 2;
+            panelNorte.add(labelDestino, gbc);
+            gbc.gridy = 3;
+            panelNorte.add(labelFecha, gbc);
+
+
             panelNorte.setBorder(new EmptyBorder(10, 10, 10, 10));
 
             crearTabla();
 
-            // Quitar el JScrollPane y agregar la tabla directamente al panelCentral
             JPanel panelCentral = new JPanel(new BorderLayout());
             JTableHeader header = tabla.getTableHeader();
+
             header.setDefaultRenderer(new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                     JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                    label.setBackground(Color.LIGHT_GRAY);  // Color RGB azul
-                    label.setForeground(Color.DARK_GRAY); // Texto en color blanco
+                    label.setBackground(Color.LIGHT_GRAY); 
+                    label.setForeground(Color.DARK_GRAY); 
                     label.setFont(label.getFont().deriveFont(Font.BOLD)); // Fuente en negrita
                     return label;
                 }
             });
+
             panelCentral.add(header, BorderLayout.NORTH);
             panelCentral.add(tabla, BorderLayout.CENTER);
             panelCentral.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-            // Botón "Volver Atrás"
             JButton botonVolver = new JButton("Volver Atrás");
 
             botonVolver.addActionListener(e -> {
@@ -92,6 +107,7 @@ public class PanelHorarios extends JPanel{
             this.add(panelSur, BorderLayout.SOUTH);
 
         }
+
     }
 
     public void crearTabla() {
@@ -119,7 +135,6 @@ public class PanelHorarios extends JPanel{
                 botonSeleccionar.addActionListener(e -> {
                     //pasa al siguiente panel
                     mediador.refresh(horario.getHora());
-
                     cardLayout.next(cards);
                     
                 });
@@ -158,5 +173,6 @@ public class PanelHorarios extends JPanel{
             }
         }
     }
+
 }
 

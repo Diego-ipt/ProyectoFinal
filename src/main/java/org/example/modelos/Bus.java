@@ -11,7 +11,7 @@ public class Bus {
     public Bus(int pisos){//solo 1 o 2 pisos
         //que pasa si el int q recibe es > 2?
         Asientos = new ArrayList<Asiento>();
-        int numAsientos = (pisos == 1) ? 40 : 72;
+        int numAsientos = (pisos == 1) ? 10 : 30;
         int numSalonCama = numAsientos / 3;
         this.pisos = pisos;
         this.id = this.toString().substring(24);
