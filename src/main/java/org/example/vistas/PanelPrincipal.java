@@ -4,9 +4,6 @@ package org.example.vistas;
 import org.example.modelos.DestinoNoDisponibleException;
 
 import javax.swing.*;
-
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.*;
 
 class PanelPrincipal extends JPanel {
@@ -18,6 +15,7 @@ class PanelPrincipal extends JPanel {
     private PanelFechaDestino panelFechaDestino;
     private PanelHorarios panelHorarios;
     private PanelCompra panelcompra;
+    private panelPasajes panelpasaje;
 
     public PanelPrincipal () throws DestinoNoDisponibleException {
         this.setLayout(new BorderLayout());
@@ -29,10 +27,12 @@ class PanelPrincipal extends JPanel {
         panelFechaDestino = new PanelFechaDestino(cardLayout, cards);
         panelHorarios = new PanelHorarios(cardLayout, cards);
         panelcompra = new PanelCompra(cardLayout, cards);
-        this.mediador.RefreshAllPaneles(panelFechaDestino, panelHorarios, panelcompra);
+        panelpasaje = new panelPasajes(cardLayout, cards);
+        this.mediador.RefreshAllPaneles(panelFechaDestino, panelHorarios, panelcompra,panelpasaje);
         panelHorarios.refreshMediador(mediador);
         panelFechaDestino.refreshMediador(mediador);
-        panelcompra.refreshMediador(mediador);//actualiza cada panel con el mediador
+        panelcompra.refreshMediador(mediador);
+        panelpasaje.refreshMediador(mediador);//actualiza cada panel con el mediador
 
         cards.add(panelFechaDestino, "panelFechaDestino");
         cards.add(panelHorarios,"panelHorarios");
