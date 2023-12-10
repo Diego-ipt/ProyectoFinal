@@ -17,9 +17,9 @@ public class Mediador {
         this.fechaytramo=fechaytramo;
         this.panelHorarios.setFechaYTramo(fechaytramo);
     }
-    public void refresh(String hora) throws HorarioNoDisponibleException {
+    public void refresh(String hora){
         this.hora=hora;
-        this.bus=this.fechaytramo.getBus(hora);
+        this.bus=this.fechaytramo.getBusPorHora(hora);
         this.panelcompra.setbus(bus);
     }
     public void refresh(ArrayList<Asiento> Asientos){

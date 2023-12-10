@@ -35,6 +35,10 @@ public class FechasYTramo {
         return bus;
     }
 
+    public Bus getBusPorHora(String hora) {
+        return busesPorHora.get(hora);
+    }
+
     public Tramo getTramo() {
         return tramo;
     }
