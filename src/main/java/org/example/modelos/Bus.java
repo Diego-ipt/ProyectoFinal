@@ -12,7 +12,7 @@ public class Bus {
         //que pasa si el int q recibe es > 2?
         Asientos = new ArrayList<Asiento>();
         int numAsientos = (pisos == 1) ? 40 : 72;
-        int numSalonCama = numAsientos / 3;
+        int numSalonCama = numAsientos / 4;
         this.pisos = pisos;
         this.id = this.toString().substring(24);
 

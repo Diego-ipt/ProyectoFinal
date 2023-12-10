@@ -1,12 +1,6 @@
 package org.example.vistas;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.BoxLayout;
 import javax.swing.*;
 import org.example.modelos.*;
@@ -19,9 +13,8 @@ public class PanelCompra extends JPanel {
     private Mediador mediador;
     private JPanel panelInfo;
     private JPanel panelPisos;
-    private JRadioButton Tarjeta;
-    private JRadioButton Efectivo;
-    private ButtonGroup paymentGroup;
+    private JButton Tarjeta;
+    private JButton Efectivo;
     private JPanel panelAsientos1;
     private JPanel panelAsientos2;
     
@@ -39,11 +32,8 @@ public class PanelCompra extends JPanel {
             this.panelInfo = new JPanel();
             this.panelPisos = new JPanel();
             this.panelInfo.setLayout(new BoxLayout(panelInfo,BoxLayout.X_AXIS));
-            this.Tarjeta = new JRadioButton("Tarjeta");
-            this.Efectivo = new JRadioButton("Efectivo");
-            this.paymentGroup = new ButtonGroup();
-            this.paymentGroup.add(Tarjeta);
-            this.paymentGroup.add(Efectivo);
+            this.Tarjeta = new JButton("Tarjeta");
+            this.Efectivo = new JButton("Efectivo");
             this.panelInfo.add(Tarjeta);
             this.panelInfo.add(Efectivo);
 
@@ -87,14 +77,12 @@ public class PanelCompra extends JPanel {
         }
     }
     private JComponent createSeatComponent(int seatNumber, String seatType, boolean disponibilidad) {
-        String busy = disponibilidad ? "ocupado" : "libre";
-
-        if (disponibilidad) {
+        if (!disponibilidad) {
             // Seat is occupied, display a label
-            return new JLabel("Asiento " + seatNumber + " - " + seatType + "." + busy);
+            return new JLabel("Asiento " + seatNumber + " - " + seatType + "." + "ocupado");
         } else {
             // Seat is available, create a checkbox
-            JCheckBox checkBox = new JCheckBox("Asiento " + seatNumber + " - " + seatType + "." + busy);
+            JCheckBox checkBox = new JCheckBox("Asiento " + seatNumber + " - " + seatType + "." + "libre");
             checkBox.addActionListener(e -> {
                 try {
                     if (checkBox.isSelected()) {
@@ -113,4 +101,5 @@ public class PanelCompra extends JPanel {
             return checkBox;
         }
     }
+
 }
