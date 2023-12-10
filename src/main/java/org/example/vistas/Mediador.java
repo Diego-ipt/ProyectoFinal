@@ -7,7 +7,7 @@ public class Mediador {
     private PanelFechaDestino panelFechaDestino;
     private PanelHorarios panelHorarios;
     private PanelCompra panelcompra;
-    private panelPasajes panelpasajes;
+    private PanelPasajes panelpasajes;
     private FechasYTramo fechaytramo;
     private Bus bus;
     private ArrayList<Asiento> Asientos;
@@ -27,7 +27,7 @@ public class Mediador {
         this.Asientos=Asientos;
         this.panelpasajes.setPasaje(Asientos, hora, fechaytramo, pago);
     }
-    public void RefreshAllPaneles(PanelFechaDestino panelFechaDestino, PanelHorarios panelHorarios, PanelCompra panelcompra,panelPasajes panelpasajes){
+    public void RefreshAllPaneles(PanelFechaDestino panelFechaDestino, PanelHorarios panelHorarios, PanelCompra panelcompra,PanelPasajes panelpasajes){
         this.panelcompra=panelcompra;
         this.panelHorarios=panelHorarios;
         this.panelFechaDestino=panelFechaDestino;

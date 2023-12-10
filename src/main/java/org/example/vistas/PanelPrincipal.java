@@ -15,7 +15,7 @@ class PanelPrincipal extends JPanel {
     private PanelFechaDestino panelFechaDestino;
     private PanelHorarios panelHorarios;
     private PanelCompra panelcompra;
-    private panelPasajes panelpasaje;
+    private PanelPasajes panelpasaje;
 
     public PanelPrincipal () throws DestinoNoDisponibleException {
         this.setLayout(new BorderLayout());
@@ -27,7 +27,7 @@ class PanelPrincipal extends JPanel {
         panelFechaDestino = new PanelFechaDestino(cardLayout, cards);
         panelHorarios = new PanelHorarios(cardLayout, cards);
         panelcompra = new PanelCompra(cardLayout, cards);
-        panelpasaje = new panelPasajes(cardLayout, cards);
+        panelpasaje = new PanelPasajes(cardLayout, cards);
         this.mediador.RefreshAllPaneles(panelFechaDestino, panelHorarios, panelcompra,panelpasaje);
         panelHorarios.refreshMediador(mediador);
         panelFechaDestino.refreshMediador(mediador);

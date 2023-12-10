@@ -9,13 +9,13 @@ import javax.swing.*;
 
 import org.example.modelos.*;
 
-public class panelPasajes extends JPanel {
+public class PanelPasajes extends JPanel {
     private CardLayout cardLayout;
     private JPanel cards;
     private Mediador mediador;
     private JPanel pasajes;
 
-    public panelPasajes(CardLayout cardLayout, JPanel cards) {
+    public PanelPasajes(CardLayout cardLayout, JPanel cards) {
         this.cardLayout = cardLayout;
         this.cards = cards;
     }
