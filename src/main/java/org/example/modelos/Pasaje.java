@@ -8,9 +8,11 @@ public class Pasaje {
     private String hora;
     private int asiento;
     private Pago pago;
+    private FechasYTramo fechaytramo;
 
     public Pasaje(int asiento, String hora, FechasYTramo fechaytramo, Pago pago) throws AsientoNoDisponibleException, HorarioNoDisponibleException {
         this.asiento = asiento;
+        this.fechaytramo=fechaytramo;
         this.fecha = fechaytramo.getFecha();
         this.hora = hora;
         this.pago=pago;
@@ -44,5 +46,8 @@ public class Pasaje {
     }
     public Pago getPago(){
         return this.pago;
+    }
+    public FechasYTramo getFYT(){
+        return this.fechaytramo;
     }
 }

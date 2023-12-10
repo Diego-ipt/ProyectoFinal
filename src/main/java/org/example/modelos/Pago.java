@@ -2,7 +2,7 @@ package org.example.modelos;
 
 import java.util.Date;
 
-abstract class Pago {
+public abstract class Pago {
     private int monto;
     private Date fecha;
 
