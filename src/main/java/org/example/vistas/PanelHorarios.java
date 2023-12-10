@@ -23,14 +23,11 @@ public class PanelHorarios extends JPanel{
         this.cardLayout = cardLayout;
         this.cards = cards;
         this.setLayout(new BorderLayout());
-
-
-
     }
-
-    public void setFechasYTramo(FechasYTramo fechasYTramo) {
-         if(fechasYTramo != null) {
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+    public void setFechaYTramo(FechasYTramo fechaytramo) {
+        this.fechasYTramo = fechaytramo;
+        if(fechasYTramo != null) {
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fecha = formato.format(fechasYTramo.getFecha());
             String origen = fechasYTramo.getTramo().getOrigen();
             String destino = fechasYTramo.getTramo().getDestino();
@@ -54,9 +51,6 @@ public class PanelHorarios extends JPanel{
 
             this.add(panelNorte, BorderLayout.NORTH);
         }
-    }
-    public void setFechaYTramo(FechasYTramo fechaytramo) {
-        this.fechasYTramo = fechaytramo;
     }
     public void refreshMediador(Mediador mediador){
         this.mediador=mediador;
