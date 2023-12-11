@@ -95,14 +95,14 @@ public class PanelCompra extends JPanel {
                 }
 
             });
-            JButton botonVolver = new JButton("Volver Atrás");
-            botonVolver.addActionListener(e -> {
-                mediador.refresh(mediador.getFechaytramo());
-                cardLayout.previous(cards);
-            });
+            // JButton botonVolver = new JButton("Volver Atrás");
+            // botonVolver.addActionListener(e -> {
+            //     mediador.refresh(mediador.getFechaytramo());
+            //     cardLayout.previous(cards);
+            // });
 
             JPanel panelbotonCompra = new JPanel();
-            panelbotonCompra.add(botonVolver);
+            // panelbotonCompra.add(botonVolver);
             panelbotonCompra.add(botonComprar);
 
             JLabel textoSeleccion = new JLabel("Seleccione su método de pago");
