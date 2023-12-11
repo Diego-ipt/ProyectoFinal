@@ -92,14 +92,15 @@ public class PanelCompra extends JPanel {
                 }
 
             });
-            // JButton botonVolver = new JButton("Volver Atrás");
-            // botonVolver.addActionListener(e -> {
-            //     mediador.refresh(mediador.getFechaytramo());
-            //     cardLayout.previous(cards);
-            // });
+            JButton botonVolver = new JButton("Volver Atrás");
+            botonVolver.addActionListener(e -> {
+                mediador.backPanel(this);
+                mediador.refresh(mediador.getFechaytramo());
+                cardLayout.previous(cards);
+            });
 
             JPanel panelbotonCompra = new JPanel();
-            // panelbotonCompra.add(botonVolver);
+            panelbotonCompra.add(botonVolver);
             panelbotonCompra.add(botonComprar);
 
             JLabel textoSeleccion = new JLabel("Seleccione su método de pago");
@@ -157,25 +158,13 @@ public class PanelCompra extends JPanel {
             this.add(panelBotones, BorderLayout.SOUTH);
             this.add(panelPisos, BorderLayout.CENTER);
         }
+        resetState();
     }
     private JComponent createSeatComponent(int seatNumber, String seatType, boolean disponibilidad) {
         if (!disponibilidad) {
             return new JLabel(seatNumber + " - " + seatType + " - " + "ocupado");
         } else {
             JCheckBox checkBox = new JCheckBox(seatNumber + " - " + seatType + "." + "libre");
-            // checkBox.addActionListener(e -> {
-            //     try {
-            //         if (checkBox.isSelected()) {
-            //             bus.OcuparAsiento(seatNumber);
-            //         } else {
-            //             // Release the seat if it was selected and is now unselected
-            //             bus.getAsiento(seatNumber - 1).setDisponibilidad(true);
-            //         }
-            //     } catch (AsientoNoDisponibleException ex) {
-            //         checkBox.setSelected(false);
-            //         JOptionPane.showMessageDialog(this, "Error, el asiento ya está ocupado");
-            //     }
-            // });
             return checkBox;
         }
     }
@@ -183,7 +172,11 @@ public class PanelCompra extends JPanel {
         String[] parts = checkBoxText.split(" ");
         return Integer.parseInt(parts[0]);
     }
-
+    private void resetState() {
+        asientosSeleccionados.clear();
+        // Reset other UI elements as needed
+        // ...
+    }
     private void handlePaymentMethodSelection() throws AsientoNoDisponibleException, HorarioNoDisponibleException {
         for (Component component : panelPisos.getComponents()) {
             if (component instanceof JPanel) {
@@ -211,5 +204,6 @@ public class PanelCompra extends JPanel {
 
     public void refreshMediador(Mediador mediador){
         this.mediador=mediador;
+        resetState();
     }
 }

@@ -51,7 +51,9 @@ public class PanelPasajes extends JPanel {
         terminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                mediador.restartpanels();
                 cardLayout.show(cards, "panelFechaDestino");
+                //refreshallpanels???
             }
         });
 

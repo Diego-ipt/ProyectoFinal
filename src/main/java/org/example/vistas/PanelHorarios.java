@@ -133,19 +133,20 @@ public class PanelHorarios extends JPanel {
             panelCentral.setBorder(new EmptyBorder(10, 10, 10, 10));
 
             // Configuración del botón de volver atrás
-            // JButton botonVolver = new JButton("Volver Atrás");
-            // botonVolver.addActionListener(e -> {
-            //     cardLayout.previous(cards);
-            // });
+            JButton botonVolver = new JButton("Volver Atrás");
+            botonVolver.addActionListener(e -> {
+                mediador.backPanel(this);
+                cardLayout.previous(cards);
+            });
 
-            // JPanel panelSur = new JPanel();
-            // panelSur.add(botonVolver);
-            // panelSur.setBorder(new EmptyBorder(10, 10, 10, 10));
+            JPanel panelSur = new JPanel();
+            panelSur.add(botonVolver);
+            panelSur.setBorder(new EmptyBorder(10, 10, 10, 10));
 
             // Añadir los componentes al panel principal
             this.add(panelCentral, BorderLayout.CENTER);
             this.add(panelNorte, BorderLayout.NORTH);
-            // this.add(panelSur, BorderLayout.SOUTH);
+            this.add(panelSur, BorderLayout.SOUTH);
         }
     }
 
