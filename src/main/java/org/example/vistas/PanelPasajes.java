@@ -3,9 +3,11 @@ package org.example.vistas;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import javax.swing.BoxLayout;
+
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import org.example.modelos.*;
 
@@ -24,15 +26,45 @@ public class PanelPasajes extends JPanel {
         setLayout(new BorderLayout());
         pasajes= new JPanel();
         pasajes.setLayout(new GridLayout((int) Math.ceil(Asientos.size() / 3.0)+1, 3, 10, 10));
-        JButton terminar= new JButton("¿Terminar?");
+        
+        JPanel panelSur = new JPanel();
+        JButton terminar= new JButton("Confirmar");
+
+        JLabel labelTitulo = new JLabel("Detalles de la compra");
+        labelTitulo.setFont(new Font(labelTitulo.getFont().getName(), Font.BOLD, 20));
+        labelTitulo.setForeground(Color.DARK_GRAY);
+
+        JLabel labelPago = new JLabel("Método de pago: " + pago.toStringPago());
+        labelPago.setForeground(Color.DARK_GRAY);
+
+        JPanel panelNorte = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.NORTH;
+        panelNorte.add(labelTitulo, gbc);
+
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        panelNorte.add(labelPago, gbc);
+
         terminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards, "panelFechaDestino");
             }
         });
-        this.add(terminar,BorderLayout.NORTH);
+
+        panelSur.add(terminar);
+
+        panelNorte.setBorder(new EmptyBorder(10,10,10,10));
+        panelSur.setBorder(new EmptyBorder(10,10,10,10));
+        pasajes.setBorder(new EmptyBorder(10,15,10,15));
+
+
+        this.add(panelSur,BorderLayout.SOUTH);
         this.add(pasajes, BorderLayout.CENTER);
+        this.add(panelNorte, BorderLayout.NORTH);
         // Crear y agregar paneles de pasaje al GridLayout
         for (Asiento asiento : Asientos) {
             // Crear un panel de pasaje y mostrar la información
@@ -44,12 +76,16 @@ public class PanelPasajes extends JPanel {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
         JLabel asientoLabel = new JLabel("Asiento: " + pasaje.getAsiento());
         JLabel horaLabel = new JLabel("Hora: " + pasaje.getHora());
-        JLabel fechaLabel = new JLabel("Fecha: " + pasaje.getFecha());
-        JLabel valorLabel = new JLabel("Valor: " + pasaje.getValor());
-        JLabel tramo = new JLabel("Origen: "+ pasaje.getFYT().getTramo().getOrigen()+ ", Destino: "+pasaje.getFYT().getTramo().getDestino() );
-        panel.add(tramo);
+        JLabel fechaLabel = new JLabel("Fecha: " + formato.format(pasaje.getFecha()));
+        JLabel valorLabel = new JLabel("Precio: $" + pasaje.getValor());
+        JLabel labelOrigen = new JLabel("Origen: "+ pasaje.getFYT().getTramo().getOrigen());
+        JLabel labelDestino = new JLabel("Destino: "+pasaje.getFYT().getTramo().getDestino());
+        panel.add(labelOrigen);
+        panel.add(labelDestino);
         panel.add(asientoLabel);
         panel.add(horaLabel);
         panel.add(fechaLabel);

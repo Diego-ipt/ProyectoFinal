@@ -1,7 +1,12 @@
 package org.example.vistas;
 
+import java.awt.*;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -80,6 +85,19 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
         panelCentral.setLayout(new GridLayout(3, 2, 0, 50));
         panelCentral.setBorder(new EmptyBorder(10, 10, 0, 10)); // Espaciado de 10 píxeles en cada lado
 
+        JLabel labelTitulo = new JLabel("Ingrese su recorrido");
+        labelTitulo.setFont(new Font(labelTitulo.getFont().getName(), Font.BOLD, 20));
+        labelTitulo.setForeground(Color.DARK_GRAY);
+
+        JPanel panelNorte = new JPanel(new GridBagLayout());
+        panelNorte.setBorder(new EmptyBorder(10, 10, 0, 10)); // Espaciado de 10 píxeles en cada lado
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.NORTH;
+        panelNorte.add(labelTitulo, gbc);
+
         JLabel labelorigen = new JLabel("Seleccione su origen: ");
         JLabel labeldestino = new JLabel("Seleccione su destino: ");
         JLabel labelfecha = new JLabel("Fecha de viaje (DD/MM/AAAA): ");
@@ -103,6 +121,7 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
         btnPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         btnPanel.add(buscarButton);
 
+        this.add(panelNorte, BorderLayout.NORTH);
         this.add(panelCentral, BorderLayout.CENTER);
         this.add(btnPanel, BorderLayout.SOUTH);
     }

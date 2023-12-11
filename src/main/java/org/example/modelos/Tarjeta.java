@@ -46,13 +46,13 @@ public class Tarjeta extends Pago {
     }
 
     /**
-     * Devuelve una representación en cadena del objeto {@code Tarjeta}, incluyendo el tipo de tarjeta,
-     * el monto pagado y el número de transacción.
+     * Devuelve una representación en cadena del objeto {@code Tarjeta}
+     * Incluye el método de pago
      *
      * @return Una representación en cadena del objeto {@code Tarjeta}.
      */
     @Override
     public String toStringPago() {
-        return "Método: Tarjeta " + tipo + ", Monto pagado: " + getMonto() + ", Número de Transacción: " + calcNumTransaccion();
+        return "Tarjeta";
     }
 }

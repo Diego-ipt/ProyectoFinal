@@ -24,12 +24,12 @@ public class Efectivo extends Pago {
 
     /**
      * Devuelve una representación en cadena del objeto {@code Efectivo}.
-     * Incluye el método de pago y el monto recibido en efectivo.
+     * Incluye el método de pago.
      *
      * @return Una representación en cadena del objeto {@code Efectivo}.
      */
     @Override
     public String toStringPago() {
-        return "Método: Efectivo, Monto recibido: " + getMonto();
+        return "Efectivo";
     }
 }
