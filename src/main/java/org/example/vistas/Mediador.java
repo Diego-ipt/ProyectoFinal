@@ -12,6 +12,9 @@ import java.util.ArrayList;
  *
  * El mediador tiene la capacidad de actualizar y refrescar la información en los diferentes paneles.
  * Además, almacena información sobre la fecha, tramo, bus, hora y asientos seleccionados durante la interacción.
+ *
+ * @author [Tu nombre]
+ * @version 1.0
  */
 public class Mediador {
     /**
@@ -140,17 +143,27 @@ public class Mediador {
     public ArrayList<Asiento> getAsientos() {
         return this.Asientos;
     }
-    public void backPanel(JPanel origenpanel){
-        if(origenpanel.equals(this.panelHorarios)){
+
+    /**
+     * Asegura la superpocision de paneles al retroceder al panel anterior dependiendo del origen del panel.
+     *
+     * @param origenpanel Panel de origen.
+     */
+    public void backPanel(JPanel origenpanel) {
+        if (origenpanel.equals(this.panelHorarios)) {
             this.panelHorarios.removeAll();
             this.panelcompra.removeAll();
             this.panelpasajes.removeAll();
-        }else if(origenpanel.equals(this.panelcompra)){
+        } else if (origenpanel.equals(this.panelcompra)) {
             this.panelcompra.removeAll();
             this.panelpasajes.removeAll();
         }
     }
-    public void restartpanels(){
+
+    /**
+     * Reinicia todos los paneles.
+     */
+    public void restartpanels() {
         this.panelHorarios.removeAll();
         this.panelcompra.removeAll();
         this.panelpasajes.removeAll();

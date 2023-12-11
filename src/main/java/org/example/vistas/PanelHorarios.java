@@ -11,7 +11,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-
 /**
  * La clase {@code PanelHorarios} es un subpanel que muestra los horarios disponibles para un tramo específico.
  * Permite al usuario seleccionar un horario y ver los pasajes disponibles para ese horario.
@@ -230,4 +229,3 @@ public class PanelHorarios extends JPanel {
         }
     }
 }
-
