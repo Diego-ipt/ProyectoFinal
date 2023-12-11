@@ -158,6 +158,7 @@ public class PanelCompra extends JPanel {
             this.add(panelBotones, BorderLayout.SOUTH);
             this.add(panelPisos, BorderLayout.CENTER);
         }
+        resetState();
     }
     private JComponent createSeatComponent(int seatNumber, String seatType, boolean disponibilidad) {
         if (!disponibilidad) {
@@ -171,7 +172,11 @@ public class PanelCompra extends JPanel {
         String[] parts = checkBoxText.split(" ");
         return Integer.parseInt(parts[0]);
     }
-
+    private void resetState() {
+        asientosSeleccionados.clear();
+        // Reset other UI elements as needed
+        // ...
+    }
     private void handlePaymentMethodSelection() throws AsientoNoDisponibleException, HorarioNoDisponibleException {
         for (Component component : panelPisos.getComponents()) {
             if (component instanceof JPanel) {
@@ -199,5 +204,6 @@ public class PanelCompra extends JPanel {
 
     public void refreshMediador(Mediador mediador){
         this.mediador=mediador;
+        resetState();
     }
 }
