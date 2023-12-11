@@ -1,6 +1,7 @@
 package org.example.vistas;
 import org.example.modelos.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -107,9 +108,9 @@ public class Mediador {
      */
     public void RefreshAllPaneles(PanelFechaDestino panelFechaDestino, PanelHorarios panelHorarios,
                                   PanelCompra panelcompra, PanelPasajes panelpasajes) {
-        this.panelcompra = panelcompra;
-        this.panelHorarios = panelHorarios;
         this.panelFechaDestino = panelFechaDestino;
+        this.panelHorarios = panelHorarios;
+        this.panelcompra = panelcompra;
         this.panelpasajes = panelpasajes;
     }
 
@@ -138,5 +139,20 @@ public class Mediador {
      */
     public ArrayList<Asiento> getAsientos() {
         return this.Asientos;
+    }
+    public void backPanel(JPanel origenpanel){
+        if(origenpanel.equals(this.panelHorarios)){
+            this.panelHorarios.removeAll();
+            this.panelcompra.removeAll();
+            this.panelpasajes.removeAll();
+        }else if(origenpanel.equals(this.panelcompra)){
+            this.panelcompra.removeAll();
+            this.panelpasajes.removeAll();
+        }
+    }
+    public void restartpanels(){
+        this.panelHorarios.removeAll();
+        this.panelcompra.removeAll();
+        this.panelpasajes.removeAll();
     }
 }

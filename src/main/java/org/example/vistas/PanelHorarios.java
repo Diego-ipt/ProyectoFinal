@@ -135,6 +135,7 @@ public class PanelHorarios extends JPanel {
             // Configuración del botón de volver atrás
             JButton botonVolver = new JButton("Volver Atrás");
             botonVolver.addActionListener(e -> {
+                mediador.backPanel(this);
                 cardLayout.previous(cards);
             });
 
