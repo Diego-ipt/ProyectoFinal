@@ -1,13 +1,6 @@
 package org.example.vistas;
 
 import java.awt.*;
-
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -117,9 +110,14 @@ public class PanelFechaDestino extends JPanel implements ActionListener {
         panelCentral.add(labelfecha);
         panelCentral.add(textfecha);
 
+
         JPanel btnPanel = new JPanel();
         btnPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         btnPanel.add(buscarButton);
+
+        panelNorte.setBackground(Color.decode("#D3EFE9"));
+        panelCentral.setBackground(Color.decode("#D3EFE9"));
+        btnPanel.setBackground(Color.decode("#D3EFE9"));
 
         this.add(panelNorte, BorderLayout.NORTH);
         this.add(panelCentral, BorderLayout.CENTER);

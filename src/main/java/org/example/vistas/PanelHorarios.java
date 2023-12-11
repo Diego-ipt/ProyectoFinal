@@ -147,6 +147,10 @@ public class PanelHorarios extends JPanel {
             this.add(panelCentral, BorderLayout.CENTER);
             this.add(panelNorte, BorderLayout.NORTH);
             this.add(panelSur, BorderLayout.SOUTH);
+
+            panelNorte.setBackground(Color.decode("#D3EFE9"));
+            panelCentral.setBackground(Color.decode("#D3EFE9"));
+            panelSur.setBackground(Color.decode("#D3EFE9"));
         }
     }
 

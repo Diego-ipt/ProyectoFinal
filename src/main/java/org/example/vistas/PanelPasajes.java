@@ -63,6 +63,10 @@ public class PanelPasajes extends JPanel {
         panelSur.setBorder(new EmptyBorder(10,10,10,10));
         pasajes.setBorder(new EmptyBorder(10,15,10,15));
 
+        panelNorte.setBackground(Color.decode("#D3EFE9"));
+        pasajes.setBackground(Color.decode("#D3EFE9"));
+        panelSur.setBackground(Color.decode("#D3EFE9"));
+
 
         this.add(panelSur,BorderLayout.SOUTH);
         this.add(pasajes, BorderLayout.CENTER);
@@ -86,6 +90,7 @@ public class PanelPasajes extends JPanel {
         JLabel valorLabel = new JLabel("Precio: $" + pasaje.getValor());
         JLabel labelOrigen = new JLabel("Origen: "+ pasaje.getFYT().getTramo().getOrigen());
         JLabel labelDestino = new JLabel("Destino: "+pasaje.getFYT().getTramo().getDestino());
+
         panel.add(labelOrigen);
         panel.add(labelDestino);
         panel.add(asientoLabel);

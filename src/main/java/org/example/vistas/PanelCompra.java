@@ -154,9 +154,14 @@ public class PanelCompra extends JPanel {
                 this.panelPisos.add(panelAsientos1, BorderLayout.CENTER);
             }
 
+            panelNorte.setBackground(Color.decode("#D3EFE9"));
+            panelBotones.setBackground(Color.decode("#D3EFE9"));
+            panelPisos.setBackground(Color.decode("#D3EFE9"));
+
             this.add(panelNorte, BorderLayout.NORTH);
             this.add(panelBotones, BorderLayout.SOUTH);
             this.add(panelPisos, BorderLayout.CENTER);
+
         }
         resetState();
     }
@@ -164,7 +169,7 @@ public class PanelCompra extends JPanel {
         if (!disponibilidad) {
             return new JLabel(seatNumber + " - " + seatType + " - " + "ocupado");
         } else {
-            JCheckBox checkBox = new JCheckBox(seatNumber + " - " + seatType + "." + "libre");
+            JCheckBox checkBox = new JCheckBox(seatNumber + " - " + seatType + " - " + "libre");
             return checkBox;
         }
     }
@@ -174,8 +179,7 @@ public class PanelCompra extends JPanel {
     }
     private void resetState() {
         asientosSeleccionados.clear();
-        // Reset other UI elements as needed
-        // ...
+
     }
     private void handlePaymentMethodSelection() throws AsientoNoDisponibleException, HorarioNoDisponibleException {
         for (Component component : panelPisos.getComponents()) {
